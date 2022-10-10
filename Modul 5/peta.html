@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Peta Bukitinggi</title>
+    <link rel="stylesheet" type="text/css" href="leaflet.css"/>
+    <script type="text/javascript" src="leaflet.js"></script>
+</head>
+<body>
+    <div id="mapku" style="width: 100%; height: 600px;"></div>
+</body>
+<script type="text/javascript">
+
+    var myMap = L.map('mapku').setView([-0.30344722174886835, 100.38373866829427],17);
+
+    var title = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        maxZoom: 19,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(myMap);
+
+    var myLocation = [
+        [-0.3111216920458997, 100.37419510385489, 'RS Madina Bukittinggi'],
+        [-0.31129632622491715, 100.37093649896204, 'Rumah Sakit Islam Ibnu Sina Bukittinggi'],
+        [-0.3122581394813078, 100.3724462394369, 'Rumah Sakit TNI AD TK IV Bukittinggi'],
+        [-0.299598325999827, 100.3662614412897, 'RSUD Dr.Achmad Mochtar-Cindua Mati'],
+        [-0.2838351831186996, 100.37129595478129, 'RSUD Kota BUkittinggi'],
+        [-0.3156268263105237, 100.3747303124536, 'Rumah Sakit Otak DR. Drs. M. Hatta Bukittinggi'],
+        [-0.31142839755037016, 100.37051776642005, 'Poli Mata RS Ibnu SINA Bukittinggi'],
+        [-0.30510513926991395, 100.36926645478141, 'Rumah Sakit Angkatan Darat'],
+        [-0.3016165244212013, 100.36571795478132, 'Rumah Sakit Khusus T.H.T Sitawa Sidingin'],
+        [-0.3152696278890124, 100.37595154160701, 'Rumah Sakit Dr.']
+    ];
+
+    L.marker([-0.3111216920458997, 100.37419510385489]).bindPopup('RS Madina Bukittinggi').addTo(myMap);
+    L.marker([-0.31129632622491715, 100.37093649896204]).bindPopup('Rumah Sakit Islam Ibnu Sina Bukittinggi').addTo(myMap);
+    L.marker([-0.3122581394813078, 100.3724462394369]).bindPopup('Rumah Sakit TNI AD TK IV Bukittinggi').addTo(myMap); 
+    L.marker([-0.299598325999827, 100.3662614412897]).bindPopup('RSUD Dr.Achmad Mochtar-Cindua Mato').addTo(myMap);
+    L.marker([-0.2838351831186996, 100.37129595478129]).bindPopup('RSUD Kota Bukittinggi').addTo(myMap);
+    L.marker([-0.3156268263105237, 100.3747303124536]).bindPopup('Rumah Sakit Otak DR. Drs. M. Hatta Bukittinggi').addTo(myMap);
+    L.marker([-0.31142839755037016, 100.37051776642005]).bindPopup('Poli Mata RS Ibnu SINA Bukittinggi').addTo(myMap);
+    L.marker([-0.30510513926991395, 100.36926645478141]).bindPopup('Rumah Sakit Angkatan Darat').addTo(myMap); 
+    L.marker([-0.3016165244212013, 100.36571795478132]).bindPopup('Rumah Sakit Khusus T.H.T Sitawa Sidingin').addTo(myMap); 
+    L.marker([-0.3152696278890124, 100.37595154160701]).bindPopup('RSU Madina 3rd BUilding').addTo(myMap); 
+
+    var circle = L.circle([-0.30344722174886835, 100.38373866829427],{
+        color: 'Indian Red',
+        fillColor: '#CD5C5C',
+        fillOpacity: 0.5,
+        radius: 300
+    }).addTo(myMap).bindTooltip('Bukittinggi');
+
+    var RSOtak = [
+        [-0.3157059920243251, 100.37469614517413],
+        [-0.31559635877538067, 100.37493368747037],
+        [-0.3154456130561992, 100.37523518346175],
+        [-0.3152434767474881, 100.37556865630108],
+        [-0.31516100006995307, 100.37573495324658],
+        [-0.31526828680483593, 100.3759468477416]
+    ]
+
+    L.polyline(RSOtak).addTo(myMap);
+
+
+
+</script>
+</html>
