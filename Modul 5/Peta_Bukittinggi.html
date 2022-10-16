@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bukittinggi</title>
+    <link rel="stylesheet" type="text/css" href="leaflet.css"/>
+    <script type="text/javascript" src="leaflet.js"></script>
+</head>
+<body>
+    <div id="mapku" style="width: 100%; height: 600px"></div>
+</body>
+<script type="text/javascript">
+    
+    var myMap = L.map('mapku').setView([-0.30101368554829977, 100.38346694691135],17);
+
+    var title = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+        maxZoom: 19,
+        id: 'mapbox/streets-v11',
+        tileSize: 512,
+        zoomOffset: -1
+    }).addTo(myMap);
+
+   //  var LeafIcon = L.Icon.extend({
+     //  options: {
+       //    iconSize: [110,110]
+     //  }
+  // })
+
+   // var markericon = new LeafIcon({iconUrl: 'images/markerr.png'});
+
+    
+
+    var myLocation = [
+        [-0.30091693116747287, 100.37314608892603,'Rumah Kelahiran Bung Hatta'],
+        [-0.3050696555190366, 100.369508681742, 'Jam Gadang Bukittinggi'],
+        [-0.3056889974035179, 100.3691955733846, 'Istana Bung Hatta'],
+        [-0.3071496643444073, 100.35976040759749, 'Ngarai Sianok'],
+        [-0.30652150370757747, 100.36920386962895, 'Taman Monumen Proklamator Bung Hatta'],
+        [-0.2989143438304926, 100.36836939355972, 'Monumen Tuanku Imam Bonjol'],
+        [-0.3004807129556146, 100.36773087199502, 'Benteng Fort De Kock'],
+        [-0.30032368195373293, 100.3696416362053, 'Taman Margasatwa dan Budaya Kinantan'],
+        [-0.30767728840214553, 100.36611271692044, 'Lobang Jepang'],
+        [-0.3011071836756154, 100.36472237136736, 'Taman Ngarai Maaram Bukittinggi'],
+        [-0.298578467920884, 100.37897201446845, 'Simpang Bypass'],
+        [-0.300633841653141, 100.3686290747093, 'Jembatan Limpapeh']
+    ];
+
+    for (var i = 0; i<myLocation.length; i++){
+       markerMaps = new L.marker([myLocation[i][0], myLocation[i][1]]).addTo(myMap).bindTooltip(myLocation[i][2]).bindPopup(myLocation[i][3]);
+    }
+    
+    var Jlnrmhbunghatta = [
+        [-0.298578467920884, 100.37897201446845], //bypas
+        [-0.29901635914530483, 100.37749061876221],
+        [-0.2992061228457283, 100.37676239902657],
+        [-0.3000449875933752, 100.37457694477418],
+        [-0.30091693116747287, 100.37314608892603] // bung hatta
+    ];
+
+    L.polyline(Jlnrmhbunghatta).addTo(myMap);
+
+  
+    var Jlnjamgadang = [
+        [-0.30091693116747287, 100.37314608892603], 
+        [-0.30159016477821127, 100.37222357301223],
+        [-0.30199368472883087, 100.37165029522211],
+        [-0.30227133793367217, 100.37131875145779],
+        [-0.30339102207500157, 100.37166023024216],
+        [-0.3041595811352411, 100.37125671514188],
+        [-0.3046812091539293, 100.3697251049154],
+        [-0.3050696555190366, 100.369508681742]
+    ];
+
+    L.polyline(Jlnjamgadang).addTo(myMap);
+
+    var Jlnistanabunghatta = [
+        [-0.3050696555190366, 100.369508681742],
+        [-0.30528538903355446, 100.36945789607738],
+        [-0.3054178049099083, 100.36922468272343],
+        [-0.3055106936610379, 100.36927804510269],
+        [-0.30556603163824225, 100.3693709351674],
+        [-0.30567636834312417, 100.36932818040098],
+        [-0.3056889974035179, 100.3691955733846]
+    ];
+
+    L.polyline(Jlnistanabunghatta).addTo(myMap);
+    
+    var Jlnfortdekock = [
+        [-0.3050696555190366, 100.369508681742], //jam gadang
+        [-0.3049682168604922, 100.36965809582952],
+        [-0.30484262749937335, 100.36944005566512],
+        [-0.3047693670380422, 100.36914526536283],
+        [-0.30401059793546137, 100.36924992463594],
+        [-0.3035745237019702, 100.36921503819946],
+        [-0.30253841128211006, 100.36856091768914],
+        [-0.30084121007488496, 100.36860801436254],
+        [-0.30066779198261656, 100.36861090381419],
+        [-0.3004807129556146, 100.36773087199502] // fortde kock
+    ];
+
+    L.polyline(Jlnfortdekock).addTo(myMap);
+
+    var Jlnmargasatwa = [
+        [-0.3004807129556146, 100.36773087199502], //fortde kock
+        [-0.3006403902944708, 100.36862622149282],
+        [-0.30032368195373293, 100.3696416362053] //margasatwa
+    ];
+
+    L.polyline(Jlnmargasatwa).addTo(myMap);
+
+    var Jlnlobangjepang = [
+        [-0.30570609123803955, 100.36917608969232], /// istana bung hatta
+        [-0.30579560053116, 100.36939666929828],
+        [-0.30694004067703556, 100.36966839778823],
+        [-0.3070704092149852, 100.36977634619032],
+        [-0.3073103551141647, 100.36956917681582],
+        [-0.30752407741326276, 100.36928989151981],
+        [-0.3077155096595923, 100.36874967767464],
+        [-0.30768304416913095, 100.36689839041271],
+        [-0.3074499356036778, 100.36613286239461],
+        [-0.30767728840214553, 100.36611271692044] //lobang jepang
+    ];
+
+    L.polyline(Jlnlobangjepang).addTo(myMap);
+
+    var Jlnmonumenimambonjol = [
+        [-0.300633841653141, 100.3686290747093], //jembatan limpapeh
+        [-0.2995121520065307, 100.36869157440071],
+       // [-0.299102824707186, 100.36855636912843],
+        [-0.29900481465170387, 100.36833772834244],
+        [-0.2989143438304926, 100.36836939355972]
+    ];
+
+    L.polyline(Jlnmonumenimambonjol).addTo(myMap);
+
+    var Jlnngaraimaaram = [
+        [-0.2989143438304926, 100.36836939355972], //monumenimambonjol
+        [-0.2991971323905627, 100.3672817490355],
+        [-0.2996888287928391, 100.36655049827316],
+        [-0.30115761406805275, 100.36608401071788],
+        [-0.30094958869773947, 100.36551035710264],
+        [-0.30080460131608044, 100.3647791063403],
+        [-0.3011071836756154, 100.36472237136736]
+    ];
+
+    L.polyline(Jlnngaraimaaram).addTo(myMap);
+
+    var Jlnngaraisianok = [
+        [-0.3011071836756154, 100.36472237136736],
+        [-0.30081090513429, 100.36489257627785],
+        [-0.30096219631501164, 100.36548514155075],
+       [-0.3011639178860588, 100.36610922625309],
+       [-0.30359718406584246, 100.36520146665241],
+        //[-0.3061565256375346, 100.36542210265864],
+        [-0.3046536354418324, 100.36523371557509],
+        [-0.30602425741452616, 100.36390894209936],
+        [-0.30672845486158984, 100.36350152701692],
+        [-0.30694160273482857, 100.36301586668911],
+        [-0.3081152456559757, 100.36337066086512],
+        [-0.30771560229172074, 100.36308366451696],
+        [-0.30743397440858256, 100.36246943868773],
+        [-0.3069216798592566, 100.36201346318133],
+        [-0.307377648827866, 100.36031026041404],
+        [-0.3071040674471278, 100.35979259410384],
+        [-0.3071496643444073, 100.35976040759749],
+    ];
+
+    L.polyline(Jlnngaraisianok).addTo(myMap);
+
+    var Jlnmonumenbunghatta = [
+        [-0.30570609123803955, 100.36917608969232],
+        [-0.3056911934935511, 100.36920008868984],
+        [-0.305811172731441, 100.36942742100041],
+        [-0.3069541327836263, 100.36968001246233],
+        [-0.30689940541796085, 100.36920008869556],
+        [-0.3065268383442384, 100.36920429855317]
+    ];
+
+    L.polyline(Jlnmonumenbunghatta).addTo(myMap);
+
+    var circle = L.circle([-0.30101368554829977, 100.38346694691135],{
+        color: 'Indian Red',
+        fillColor: '#CD5C5C',
+        fillOpacity: 0.5,
+        radius: 300
+    }).addTo(myMap).bindTooltip('Bukittinggi');
+
+   
+
+    var info_rumah_kelahiran_bung_hatta = '<p style="text-align: center;"><img src = "images/Rumah Kelahiran Bung Hatta.jpg" width="100%" height="100%"</p> <p>Rumah Kelahiran Bung Hatta No.37, Bukittinggi, Sumatera Barat. Rumah ini adalah tempat Bung Hatta dilahirkan dan menghabiskan masa kecilnya sampai berusia 11 tahun. Bung Hatta melanjutkan pendidikan menengahnya di Meer Uitgebred Lager Onderwijs (MULO) atau sekolah menengah di kota Padang.<a href="https://kemlu.go.id/portal/id/read/58/tentang_kami/rumah-kelahiran-bung-hatta"> Baca Selengkapnya </a></p>';
+    L.marker([-0.30091693116747287, 100.37314608892603]).bindTooltip("Rumah Kelahiran Bung Hatta").bindPopup(info_rumah_kelahiran_bung_hatta).addTo(myMap);
+
+    var info_jam_gadang = '<p style="text-align: center;"><img src = "images/Jam gadang.jpg" width="100%" height="100%"</p> <p>Jam Gadang adalah nama untuk menara jam yang terletak di pusat kota Bukittinggi, Sumatera Barat, Indonesia. Menara jam ini memiliki jam dengan ukuran besar di empat sisinya sehingga dinamakan Jam Gadang sebutan bahasa Minangkabau yang berarti "jam besar"<a href="http://www.bukittinggikota.go.id/wisata/jam-gadang"> Baca Selengkapnya </a></p>';
+    L.marker([-0.3050696555190366, 100.369508681742]).bindTooltip("Jam Gadang").bindPopup(info_jam_gadang).addTo(myMap);
+
+    var info_istana_bung_hatta= '<p style="text-align: center;"><img src = "images/istana bung hatta.jpg" width="100%" height="100%"</p> <p>Istana Bung Hatta yang pada masa Pemerintahan Kolonial Belanda tersebut diketahui dulunya bernama Gedung Tri Arga. Sebelum masa Kemerdekaan RI, gedung ini merupakan bangunan yang diperuntukkan bagi Residen Padangse Bovenlanden dan Asisten Residen Agam. Sekitar Juni 1947 hingga Februari 1948, bangunan tersebut kemudian beralih fungsi menjadi tempat kedudukan Wakil Presiden Mohammad Hatta<a href="https://www.viva.co.id/gaya-hidup/travel/971552-istana-bung-hatta-saksi-sejarah-pemerintahan-darurat-ri"> Baca Selengkapnya </a></p>';
+    L.marker([-0.3056889974035179, 100.3691955733846]).bindTooltip("Istana Bung Hatta").bindPopup(info_istana_bung_hatta).addTo(myMap);
+
+    var info_taman_bung_hatta= '<p style="text-align: center;"><img src = "images/bung hatta.jpg" width="100%" height="100%"</p> <p>Taman Monumen Bung Hatta berada tepat di samping gedung Istana Bung Hatta, pada sebuah lereng bukit yang rendah, diteduhi oleh banyak pepohonan besar nan rindang. Area dimana taman berada boleh dikatakan cukup luas, melebar di sepanjang Jl. Jam Gadang menuju ke arah bawah sampai bertemu pertigaan dengan Jl. H. Agus Salim. Di puncak bukit kecil Taman Monumen Bung Hatta itu, terdapat sebuah patung terbuat dari bahan perunggu sosok seorang Bung Hatta yang digambarkan dalam posisi berdiri dengan kepala sedikit menunduk dan sebelah tangannya terangkat ke atas seakan menyapa setiap orang lewat yang tak henti berlalu lalang di jalanan di bawahnya.<a href="https://www.aroengbinang.com/2017/11/taman-monumen-bung-hatta-bukittinggi.html"> Baca Selengkapnya </a></p>';
+    L.marker([-0.3065268383442384, 100.36920429855317]).bindTooltip("Taman Monumen Bung Hatta").bindPopup(info_taman_bung_hatta).addTo(myMap);
+
+    var info_lobang_jepang= '<p style="text-align: center;"><img src = "images/lobang jepang.jpg" width="100%" height="100%"</p> <p>Lobang Jepang Bukittinggi adalah salah satu objek wisata sejarah yang ada di Kota Bukittinggi. Lokasinya terletak di tengah taman panorama, Ngarai Sianok, Bukit Cangang Kayu Ramang, Kecamatan Guguk Panjang, Sumatera Barat. Jaraknya tidak terlalu jauh dari Jam Gadang yang ada di pusat kota. Tempat wisata tersebut, juga mengemuka dengan sebutan lainnya, yaitu Taman Panorama Lobang Jepang, Dalam sejarahnya, dibangun sebagai benteng pertahanan Jepang atau memperkuat kekuasaannya di wilayah Sumatera. Kala itu, Letjen Moritake Tanabe selaku Komandan Tentara Pertahanan Jepang atau bertindak sebagai Panglima Divisi ke 25 Angkatan Darat Balatentara Jepang memberikan instruksinya di tahun 1942 untuk membangun jaringan terowongan bawah tanah.<a href="https://pariwisataindonesia.id/headlines/wisata-sejarah-ke-lobang-jepang-gaaees-itu-kenangan-pilu-bagi-orang-minangkabau/"> Baca Selengkapnya </a></p>';
+    L.marker([-0.30767728840214553, 100.36611271692044]).bindTooltip("Lobang Jepang").bindPopup(info_lobang_jepang).addTo(myMap);
+
+    var info_ngarai_sianok= '<p style="text-align: center;"><img src = "images/ngarai sianok.jpg" width="100%" height="100%"</p> <p>Ngarai Sianok merupakan sebuah lembah sempit yang dikelilingi oleh bukit-bukit bertebing curam yang dihiasi dengan aliran sungai kecil di tengahnya. Kontur Lembah Sianok terbentuk karena proses turunnya sebagian lempengan bumi, sehingga menimbulkan patahan berwujud jurang yang curam. Ngarai ini membentang sejauh 15 km dari sisi selatan Nagari Koto Gadang hingga Nagari Sianok Enam Suku, dengan kedalaman tebing mencapai 100 meter dan lebar celah sekitar 200 meter. Patahan di Sianok ini merupakan bagian dari Patahan (Sesar) Semangko yang membelah Pulau Sumatera menjadi dua bagian memanjang dari Aceh hingga Teluk Semangka di Lampung. Sesar Semangko sendiri merupakan lokasi patahan yang membentuk Pegunungan Bukit Barisan.<a href="https://indonesiakaya.com/pustaka-indonesia/panorama-ngarai-sianok-mengagumi-pahatan-sang-pencipta-di-bukittinggi/"> Baca Selengkapnya </a></p>';
+    L.marker([-0.3071496643444073, 100.35976040759749]).bindTooltip("Ngarai Sianok").bindPopup(info_ngarai_sianok).addTo(myMap);
+
+    var info_ngarai_maaram= '<p style="text-align: center;"><img src = "images/Taman Ngarai Maaram.jpg" width="100%" height="100%"</p> <p>Taman Ngarai Maaram ada di Kelurahan Kayu Kubu, Kec. Guguk Panjang, Kota Bukittinggi, Sumatra Utara. Lokasinya tepat di belakang Rumah Sakit Umum Daerah (RSUD) Dr. Achmad MochtarBukittinggi. Di taman tersebut traveler bisa menikmati pemandangan Ngarai Sianok yang sangat menakjubkan. Taman Ngarai Maaram luasnya kurang lebih 1 hektar. Traveler bisa mengelilingi taman yang sejuk dan hijau tersebut melalui jalan setepak yang telah disediakan. Bagi yang membawa anak-anak, terdapat wahana permainan sederhana yang bisa dimainkan sepuasnya. Sembari menunggu si kecil, traveler bisa bersantai di tempat-tempat yang teduh dan menenangkan.<a href="https://djawanews.com/travel/taman-ngarai-maaram-di-kayu-kubu-bukittinggi-destinasi-wisata-lintas-usia-3653"> Baca Selengkapnya </a></p>';
+    L.marker([-0.3011071836756154, 100.36472237136736]).bindTooltip("Taman Ngarai Maaram").bindPopup(info_ngarai_maaram).addTo(myMap);
+
+    var info_benteng_fort_de_kock= '<p style="text-align: center;"><img src = "images/fort de kock.jpg" width="100%" height="100%"</p> <p>Benteng Fort de Kock didirikan sekitar tahun 1826 oleh seorang kapten bernama Johan Heinrich Conrad Bauer. Saat itu ia menjadi pemimpin salah satu satuan pasukan tentara Hindia-Belanda di wilayah pedalaman Sumatera Barat. Dulunya, benteng ini dinamai Sterreschans yang artinya benteng pelindung. Lalu diubah menjadi Fort de Kock yang diambil dari nama lain dari Bukit Jirek. Bukit Jirek adalah nama tempat dimana benteng itu dibangun. Nama tempat itu dibuat oleh Bauer atas penghargaan kepada Hendrik Merkus Baron de Kock. Dia waktu itu menjabat sebagai Letnan Gubernur Jenderal Hindia-Belanda dan sekaligus menjadi Komandan Militer.<a href="https://bobo.grid.id/read/08674010/sejarah-benteng-fort-de-kock-di-bukittinggi"> Baca Selengkapnya </a></p>';
+    L.marker([-0.3004807129556146, 100.36773087199502]).bindTooltip("Benteng Fort De Kock").bindPopup(info_benteng_fort_de_kock).addTo(myMap);
+
+    var info_kinantan= '<p style="text-align: center;"><img src = "images/kinantan.jpg" width="100%" height="100%"</p> <p>Taman Margasatwa dan Budaya Kinantan merupakan salah satu kebun binatang tertua yang ada di Indonesia. Prakarsa pendiriannya dimulai pada sekitar tahun 1900 atas ide seorang Controleur pemerintah Hindia Belanda yang bertugas di Fort de Kock (Bukittinggi) bernama Gravenzanden. Sang Controleur terkesan dengan keindahan panorama di sebuah bukit bernama Bukit Malambuang atau dikenal dengan nama Cubadak Bungkuak yang tepat berada di seberang Bukit Jirek, tempat di mana Benteng Fort de Kock berdiri. Dari atas bukit ini, pengunjung dapat mengamati bentangan alam di sekelilingnya yang bergelombang.<a href="https://www.tribunnewswiki.com/2021/07/27/taman-margasatwa-dan-budaya-kinantan"> Baca Selengkapnya </a></p>';
+    L.marker([-0.30032368195373293, 100.3696416362053]).bindTooltip("Taman Margasatwa dan Budaya Kinantan").bindPopup(info_kinantan).addTo(myMap);
+
+    var info_imam_bonjol= '<p style="text-align: center;"><img src = "images/imam bonjol.jpg" width="100%" height="100%"</p> <p>Monumen yang ada di Kota Bukittinggi. Monumen ini sebagai pengingat sejarah pada masyarakat untuk kepentingan pendidikan dan wisata. Selain menyimpan peristiwa bersejarah, musium ini juga menjadi objek wisata di Kota Bukittinggi yang dapat dimanfaatkan untuk berlibur bersama keluarga dan teman</p>';
+    L.marker([-0.2989143438304926, 100.36836939355972]).bindTooltip("Monumen Tuanku Imam Bonjol").bindPopup(info_imam_bonjol).addTo(myMap);
+    
+    myMap.on('click',onMapClick);
+
+   
+
+</script>
+</html>
