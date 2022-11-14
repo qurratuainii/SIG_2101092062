@@ -1,0 +1,142 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<base target="_top">
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<title>GeoJSON tutorial - Leaflet</title>
+	
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.2/dist/leaflet.css" integrity="sha256-sA+zWATbFveLLNqWO2gtiw3HL/lh1giY/Inf1BJ0z14=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js" integrity="sha256-o9N1jGDZrf5tS+Ft4gbIK7mYMipq9lqpVJ91xHSyKhg=" crossorigin=""></script>
+
+	<style>
+		html, body {
+			height: 100%;
+			margin: 0;
+		}
+		.leaflet-container {
+			height: 400px;
+			width: 600px;
+			max-width: 100%;
+			max-height: 100%;
+		}
+	</style>
+
+	
+</head>
+<body>
+
+<div id='map'></div>
+
+<script src="Bukittinggi.js" type="text/javascript"></script>
+
+<script>
+	const map = L.map('map').setView([-0.3036143877669133, 100.38481899106195], 13);
+
+	const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 19,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+	}).addTo(map);
+
+	const baseballIcon = L.icon({
+		iconUrl: 'baseball-marker.png',
+		iconSize: [32, 37],
+		iconAnchor: [16, 37],
+		popupAnchor: [0, -28]
+	});
+
+	function onEachFeature(feature, layer) {
+		let popupContent = `<p>I started out as a GeoJSON ${feature.geometry.type}, but now I'm a Leaflet vector!</p>`;
+
+		if (feature.properties && feature.properties.popupContent) {
+			popupContent += feature.properties.popupContent;
+		}
+
+		layer.bindPopup(popupContent);
+	}
+
+	/* global campus, bicycleRental, freeBus, coorsField */
+	const bicycleRentalLayer = L.geoJSON([bicycleRental, bukittinggi, RSIbnuSina, monumen, Jln, Jln2, mersi, Jln3], {
+
+		style(feature) {
+			return feature.properties && feature.properties.style;
+		},
+
+		onEachFeature,
+
+		pointToLayer(feature, latlng) {
+			return L.circleMarker(latlng, {
+				radius: 8,
+				fillColor: '#ff7800',
+				color: '#000',
+				weight: 1,
+				opacity: 1,
+				fillOpacity: 0.8
+			});
+		}
+	}).addTo(map);
+
+	const freeBusLayer = L.geoJSON(freeBus, {
+
+		filter(feature, layer) {
+			if (feature.properties) {
+				// If the property "underConstruction" exists and is true, return false (don't render features under construction)
+				return feature.properties.underConstruction !== undefined ? !feature.properties.underConstruction : true;
+			}
+			return false;
+		},
+
+		onEachFeature
+	}).addTo(map);
+
+	const coorsLayer = L.geoJSON(coorsField, {
+
+		pointToLayer(feature, latlng) {
+			return L.marker(latlng, {icon: baseballIcon});
+		},
+
+		onEachFeature
+	}).addTo(map);
+
+	
+
+    var myLocation = [
+        [ -0.30528693312147936, 100.36943701015161, 'Jam Gadang Bukittinggi'],
+		[-0.31144178468086636, 100.37094896861856, 'Rumah Sakit Ibnu Sina'],
+		[-0.3094480017425809, 100.37185307112668, 'Monumen Polisi Wanita'],
+		[-0.304165183020757, 100.36557183563559, 'Hotel Mersi']
+    ];
+
+    for (var i = 0; i<myLocation.length; i++){
+       markerMaps = new L.marker([myLocation[i][0], myLocation[i][1]]).addTo(map).bindTooltip(myLocation[i][2]).bindPopup(myLocation[i][3]);
+    }
+
+	var info_jam_gadang = '<p style="text-align: center;"></p> <p>Jam Gadang adalah nama untuk menara jam yang terletak di pusat kota Bukittinggi, Sumatera Barat, Indonesia. Menara jam ini memiliki jam dengan ukuran besar di empat sisinya sehingga dinamakan Jam Gadang sebutan bahasa Minangkabau yang berarti "jam besar"<a href="http://www.bukittinggikota.go.id/wisata/jam-gadang"> Baca Selengkapnya </a></p>';
+    L.marker([-0.30528693312147936, 100.36943701015161]).bindTooltip("Jam Gadang").bindPopup(info_jam_gadang).addTo(map);
+
+
+	var info_RSIbnusina = '<p style="text-align: center;"></p> <p>Keberadaan Rumah Sakit Islam Ibnu Sina Bukittinggi berawal dengan berdirinya Yayasan Rumah Sakit Islam Sumatera Barat di Padang pada tanggal 31 Januari 1969 (Akta Notaris Hasan Qalbi No. 20) atas prakarsa Bapak M. Natsir, baik selaku pribadi maupun selaku Ketua Dewan Dakwah Islamiah Indonesia.Yayasan ini mempunyai tujuan untuk meningkatkan derajat kesehatan yang optimal bagi masyarakat seluruhnya tanpa memandang perbedaan agama, kedudukan, warna kulit, dan asal usul, bertitik tolak dari niat yang diikrarkan “sesungguhnya sholatku, pengorbananku, hidup dan matiku bagi Allah sekalian alam”. <a href="https://ibnusinabkt.com/sejarah/"> Baca Selengkapnya </a></p>';
+	L.marker([-0.31144178468086636, 100.37094896861856]).bindTooltip("Rumah Sakit Ibnu Sina").bindPopup(info_RSIbnusina).addTo(map);
+	
+	var info_monumen = '<p style="text-align: center;"></p> <p>Tugu  ini   adalah tugu Polisi Wanita (Polwan)  yang berada di Bukittinggi.  Dibangun  dalam   rangka untuk memperingati lahirnya Polisi Wanita  pertama yang ada di Indonesia dilahirkan di Bukittinggi.  Dengan, dibukanya sekolah Polisi Wanita Pertama di Bukittinggi  maka,  sampai kini diperingati sebagai hari jadinya  Polwan yaitu pada tanggal 1 September 1948.  Terletaknya tugu ini tepat di  persimpangan  tiga  jalan  Sudirman  dengan  jalan  H. Agus Salim  Bukittinggi. Jalan tersebut merupakan bekas stasiun kereta api tepatnya,  di depan Kantor PT Pos Indonesia Cabang Bukittinggi. Keberadaan tugu tersebut merupakan bukti dalam sejarah lahirnya Polwan di Bukittinggi,  yang sekaligus merupakan lahirnya Polisi Wanita pertama di Indonesia.Tugu Polwan  ini berukuran 6 x 6 x 8 m  dengan ukuran taman 21 m x 12 m.<a href="http://kebudayaan.kemdikbud.go.id/bpcbsumbar/sejarah-tugu-polwan-di-bukittinggi/"> Baca Selengkapnya </a></p>';
+	L.marker([-0.3094480017425809, 100.37185307112668]).bindTooltip("Monumen Tugu Polisi Wanita").bindPopup(info_monumen).addTo(map);
+
+	var info_mersihotel = '<p style="text-align: center;"></p> <p>Hotel Mersi Bukittinggi merupakan salah satu hotel bintang dua yang ada di Bukittinggi. Dibandingkan hotel lainnya dengan kelas yang sama, hotel ini terbilang yang paling muda, selain itu harganya pun bisa dikatakan yang paling murah. Soal lokasi emang rada gag enak, sebab ia berada di tengah – tengah tanjakan Jalan Tuanku Nan Renceh. Tapi itu bukan masalah buat kami yang masih muda (walau saat ini saya lebih sering dipanggil pak, dibanding dipanggil mas atau uda)<a href="https://www.jelajahsumbar.com/hotel-mersi-bukittinggi/"> Baca Selengkapnya </a></p>';
+    L.marker([-0.304165183020757, 100.36557183563559]).bindTooltip("Hotel Mersi").bindPopup(info_mersihotel).addTo(map);
+
+	
+	
+	var circle = L.circle([-0.298578467920884, 100.37897201446845],{
+        color: 'Indian Red',
+        fillColor: '#CD5C5C',
+        fillOpacity: 0.5,
+        radius: 300
+    }).addTo(map).bindTooltip('Simpang Bypass');
+
+</script>
+</body>
+</html>
